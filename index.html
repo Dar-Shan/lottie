@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lottie</title>
+  <style>
+    .lottie-block, .lottie-schema {
+        width: 10em;
+    }
+  </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" type="text/javascript"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<body>
+<div class="lottie-block">
+    <p>Přehrání na mouse-over, pozpátku na mouse-out.</p>
+    
+    <script>
+        let animationWrap01 = document.querySelector('.lottie-block');
+        let animation01 = bodymovin.loadAnimation({
+          container: animationWrap01,
+          renderer: 'svg',
+          loop: false,
+          autoplay: false,
+          path: './bubbles-testing.json'
+        })
+        var directionMenu = 1;
+        animationWrap01.addEventListener('mouseenter', (e) => {
+        animation01.setDirection(directionMenu);
+        animation01.play();
+        });
+
+        animationWrap01.addEventListener('mouseleave', (e) => {
+        animation01.setDirection(-directionMenu);
+        animation01.play();
+        });
+    </script>
+</div>
+
+<div class="lottie-schema">
+    <p>Přehrání spustí animaci ve smyčce, zastavení zatím nefunguje</p>
+    
+    <script>
+        let animationWrap02 = document.querySelector('.lottie-schema');
+        let animation02 = bodymovin.loadAnimation({
+          container: animationWrap02,
+          renderer: 'svg',
+          loop: true,
+          autoplay: false,
+          path: './adrive_lottie_schema.json'
+        });
+        let playing = 0;
+        animationWrap02.addEventListener('click', (e) => {
+          if(playing == 0){
+            animation02.play();
+            playing = 1;
+          } else {
+            animation02.stop();
+            playing = 0;
+          }
+        });
+    </script>
+</div>
+</body>
+</html>
+
+<hr />
+
+<p>Alternativní zápis Lottie animace s pomocí full Lottie Playeru (ne min verze)</p>
+</script>
+<lottie-player id="sekce" src="./sections.json"  background="transparent"  speed="1"></lottie-player>
+<br />
+<button id="start">START</button>
+<button id="stop">STOP</button>
+<button id="pause">PAUSE</button>
+<button id="sekce1">SEKCE 1</button>
+<button id="sekce2">SEKCE 2</button>
+<button id="sekce3">SEKCE 3</button>
+<button id="sekce4">SEKCE 4</button>
+<button id="sekce5">SEKCE 5</button>
+
+<script>
+let player = document.getElementById("sekce");
+
+let play = document.querySelector("#start");
+let stop = document.querySelector("#stop");
+let sekce1 = document.querySelector("#sekce1");
+let sekce2 = document.querySelector("#sekce2");
+let sekce3 = document.querySelector("#sekce3");
+let sekce4 = document.querySelector("#sekce4");
+let sekce5 = document.querySelector("#sekce5");
+
+player.addEventListener("ready", () => {
+  let animationData = player.getLottie();
+  animationData.play();
+play.onclick = function () {
+  animationData.goToAndPlay(0,600);
+};
+pause.onclick = function () {
+  animationData.pause();
+};
+stop.onclick = function () {
+  animationData.stop();
+};
+sekce1.onclick = function () {
+  animationData.goToAndPlay('sekce1');
+};
+sekce2.onclick = function () {
+  animationData.goToAndPlay('sekce2');
+};
+sekce3.onclick = function () {
+  animationData.goToAndPlay('sekce3');
+};
+sekce4.onclick = function () {
+  animationData.goToAndPlay('sekce4');
+};
+sekce5.onclick = function () {
+  animationData.goToAndPlay('sekce5');
+};
+})
+</script>
+
